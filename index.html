@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Zaki 💗</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:"Comic Sans MS",cursive;
+background:linear-gradient(180deg,#ffd6ec,#e6f7ff);
+text-align:center;
+}
+
+/* center card */
+
+.card{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(255,100,180,0.3);
+width:80%;
+max-width:320px;
+z-index:5;
+}
+
+/* photo */
+
+.photo{
+width:180px;
+border-radius:20px;
+box-shadow:0 0 25px pink;
+margin-top:10px;
+}
+
+/* glowing heart */
+
+.photo::after{
+content:"";
+position:absolute;
+}
+
+/* buttons */
+
+button{
+background:#ff8cc8;
+border:none;
+padding:10px 18px;
+border-radius:20px;
+font-size:16px;
+color:white;
+margin-top:12px;
+cursor:pointer;
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+color:pink;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* sparkles */
+
+.sparkle{
+position:absolute;
+color:white;
+font-size:14px;
+animation:spark 2s linear infinite;
+}
+
+@keyframes spark{
+0%{opacity:0;}
+50%{opacity:1;}
+100%{opacity:0;}
+}
+
+/* message bubbles */
+
+.bubble{
+position:absolute;
+background:white;
+padding:8px 12px;
+border-radius:15px;
+font-size:13px;
+animation:float 10s linear infinite;
+}
+
+/* sticker rain */
+
+.sticker{
+position:absolute;
+font-size:22px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(100vh);}
+}
+
+/* love letter popup */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10;
+}
+
+.popupBox{
+background:white;
+padding:25px;
+border-radius:20px;
+width:80%;
+max-width:300px;
+}
+
+/* teddy */
+
+.teddy{
+position:fixed;
+bottom:20px;
+right:20px;
+font-size:40px;
+animation:wave 2s infinite;
+}
+
+@keyframes wave{
+0%{transform:rotate(0deg)}
+50%{transform:rotate(20deg)}
+100%{transform:rotate(0deg)}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- floating hearts container -->
+<div id="hearts"></div>
+
+<!-- sticker rain -->
+<div id="stickers"></div>
+
+<!-- comforting messages -->
+<div class="bubble" style="left:10%">You matter 💗</div>
+<div class="bubble" style="left:70%">I'm here for you</div>
+<div class="bubble" style="left:40%">You are loved</div>
+
+<!-- main card -->
+
+<div class="card">
+
+<h2>💗 Hey my love</h2>
+
+<img class="photo" src="https://i.ibb.co/Q74Q44yq/Screenshot-20260123-184542.png">
+
+<p id="type"></p>
+
+<button onclick="moodFix()">🌈 Mood Fix</button>
+<br>
+<button onclick="secret()">🎁 Secret Heart</button>
+
+</div>
+
+<!-- teddy -->
+
+<div class="teddy">🧸</div>
+
+<!-- popup -->
+
+<div class="popup" id="popup">
+
+<div class="popupBox">
+<h3>💌 Love Letter</h3>
+
+<p>
+I love you Zaki.  
+I am there for you always.  
+I am super proud of you ❤️  
+
+No matter how you feel today,  
+you are strong, loved, and never alone.
+</p>
+
+<button onclick="closePopup()">Close</button>
+
+</div>
+</div>
+
+<script>
+
+/* floating hearts */
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),7000);
+}
+
+setInterval(createHeart,300);
+
+/* sticker rain */
+
+function createSticker(){
+let s=document.createElement("div");
+s.className="sticker";
+let stickers=["🐻","💗","✨","🧸"];
+s.innerHTML=stickers[Math.floor(Math.random()*stickers.length)];
+s.style.left=Math.random()*100+"vw";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),5000);
+}
+
+setInterval(createSticker,400);
+
+/* typewriter text */
+
+let text="❤️ I love you Zaki. I am there for you and I am super proud of you.";
+let i=0;
+
+function typing(){
+if(i<text.length){
+document.getElementById("type").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,40);
+}
+}
+
+typing();
+
+/* popup */
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+/* mood fix */
+
+function moodFix(){
+alert("You are loved, strong, and important 💗");
+}
+
+/* secret heart */
+
+function secret(){
+for(let i=0;i<40;i++){
+createHeart();
+}
+alert("Surprise hearts for you 💗");
+}
+
+/* cursor hearts */
+
+document.addEventListener("mousemove",function(e){
+let heart=document.createElement("div");
+heart.innerHTML="💗";
+heart.style.position="absolute";
+heart.style.left=e.pageX+"px";
+heart.style.top=e.pageY+"px";
+heart.style.fontSize="14px";
+heart.style.pointerEvents="none";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),600);
+});
+
+/* heart explosion on load */
+
+window.onload=function(){
+for(let i=0;i<40;i++){
+createHeart();
+}
+}
+
+</script>
+
+</body>
+  </html>
